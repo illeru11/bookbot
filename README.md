@@ -1,2 +1,3 @@
-# bookbot
-Boot dev project for text statistics
+#bookbot
+
+BookBot is my first [Boot.dev](https://www.boot.dev) project!
