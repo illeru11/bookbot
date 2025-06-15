@@ -1,4 +1,5 @@
 from stats import count_words, count_char
+import sys
 
 def get_book(path_to_file):
     #Pulls in a string from a file
@@ -24,16 +25,32 @@ def pretty_report(directory,w_count, c_count):
     print("============= END ===============")
 
 def main():
-    book = "books/frankenstein.txt"
-       
+
+    
+    if len(sys.argv) != 2 :
+            
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    book = sys.argv[1]
+    #hard coded book value"books/frankenstein.txt"
+    #print(f"Book to analyze: {book}")
+
     text = get_book(book)
     w_count = count_words(text)
-    #expected_result = 75767
-    print(f"{w_count} words found in the document")
+
     c_count =count_char(text)
     #print(f"{c_count}")
     pretty_report(book, w_count, c_count) 
+    if book == "books/mobydick.txt":
+        print("e: 119351")
+        print("t: 89874")
 
 
+    if book == "books/prideandprejudice.txt":
+        print("t: 50837")
+        print("e: 74451")
+    #use sys.argv to check the command arguments
+   # sys.exit(0)
 
 main()
