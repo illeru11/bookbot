@@ -7,36 +7,21 @@ def get_book(path_to_file):
     return file_string
 
 
-def count_char(text):
-    #Counts the number of characters in a string
-    if text is None:
-        return 0
-    small_text = text.lower()
-    small = list(small_text)
+def pretty_report(directory,w_count, c_count):
+    #Looking report of the stats
+    print("============ BOOKBOT ============")
+    print(f"Analyzing book found at {directory}...")
+    print("----------- Word Count ----------")
+    print(f"Found {w_count} total words")
+    print("--------- Character Count -------")
+#loop for the book output
 
-    #alphabet_string = "abcdefghijklmnopqrstuvwxyz"
-    #alphabet = list(alphabet_string)
+    for c in c_count:   
+        char = c["char"]
+        num = c["num"]
+        print(f"{char}: {num}")
     
-    count_list = {}
-    alphabet = []
-    #set values of the first dictionary
-    #for char in range(0,len(alphabet)+1):
-        #count_list ={char: 0}
-    
-    for s in small:
-        if s in count_list:
-            count_list[s] += 1   
-        else:
-            count_list[s] = 1 
-
-    return count_list
-
-    
-
-    
-    #text.split
-    
-    #return len(text)
+    print("============= END ===============")
 
 def main():
     book = "books/frankenstein.txt"
@@ -46,12 +31,9 @@ def main():
     #expected_result = 75767
     print(f"{w_count} words found in the document")
     c_count =count_char(text)
-    print(f"{c_count}")
+    #print(f"{c_count}")
+    pretty_report(book, w_count, c_count) 
 
 
 
-#end
-
-    #value = count_char(text)
-    #print (value)
-main()  
+main()
