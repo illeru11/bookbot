@@ -1,0 +1,702 @@
+Classes Practice
+Wizards are having a hard time keeping track of all the books in their library. They need your help to create a library system that will allow them to add, remove, and search for books.
+
+Magical incantations to find books have unfortunately not been invented yet.
+
+Assignment
+You've been tasked with writing the code for the wizard library. Complete the Library and Book classes listed below.
+
+Create the Book Class:
+Create the __init__(self, title, author) method
+Set .title and .author to the values of the parameters.
+Create the Library Class:
+Create the __init__(self, name) method
+Initialize a .name member variable to the value of the name parameter.
+Create a .books member initialized to an empty list.
+Add the add_book(self, book) method:
+Add book, the given Book instance, to the library's books instance variable by appending it to the end of the list.
+Add the remove_book(self, book) method:
+Create a new, empty list to hold the books you want to keep.
+Loop through every book in the library’s books list.
+If the book’s title and author do not match the one you want to remove, add it to the new list.
+After checking all the books, replace the library’s books list with the new list.
+Add the search_books(self, search_string) method:
+For every book in the library check if the search_string is contained in the title or author field (case-insensitive).
+Return a list of all books that match the search string, ordered in the same order as they were added to the library.
+After a book is removed, it should no longer be returned in the search results.
+
+Tips
+You can use the .lower() method to convert a string to lowercase.
+Avoid modifying a list while looping over it because it can skip items or cause errors; instead, create a new list with the items you want to keep or loop over a copy.
+
+
+
+
+Boots
+Spellbook
+
+
+Boots
+Struggling? I, Boots the Bear with a Back-End, am happy to help! Ask me anything about the lesson. If you find my explanations suspect, ask a human for help in the Discord!
+
+Boots
+class Book:
+def init(self, title, author):
+self.title=title
+self.author=author
+
+class Library:
+def init(self, name):
+self.name=name
+self.books=[]
+
+def add_book(self, book):
+    self.books.append.books.Book()
+    
+
+def remove_book(self, book):
+    keep_list=[]
+    for title in books:
+        if title in keep_list:
+            keep_list.append(book)
+    #After checking all the books, replace the library’s books list with the new list.
+    return keep_list
+            
+    
+            
+        
+
+def search_books(self, search_string):
+    #case insensitive
+    case_string=search_string.lower()
+    keep_list=[]
+    if search_string in Library:
+        keep_list.append
+    return keep_list
+
+Boots
+I can see your code and you've made a good start on the Book class! However, there are several issues in your Library class methods that need attention.
+
+Let's start with the add_book method. What do you think is wrong with this line:
+
+self.books.append.books.Book()
+
+What should you be appending to self.books, and how does the append method work?
+
+
+
+Boots
+self.books.append(Book)
+
+Boots
+Great fix on the add_book method! That's exactly right - you append the book parameter to self.books.
+
+Now let's look at your remove_book method. I see a few issues:
+
+In your for loop, what is books? Should you be looping over books or self.books?
+
+Your current logic checks if title in keep_list: - but what should you actually be checking? Remember, you want to keep books that do NOT match the book you're trying to remove.
+
+At the end, you're returning keep_list, but what should you do with it instead according to the instructions?
+
+Can you think through what the logic should be for deciding which books to keep?
+
+
+
+Boots
+self.books
+Boots
+I can see you're thinking about the right concepts, but there's a syntax issue with your for loop. The syntax for title not in self.books: isn't valid Python.
+
+Let me guide you through the logic step by step:
+
+You want to loop through each book in self.books
+For each book, you want to check if it's the one you want to remove
+If it's NOT the one you want to remove, add it to your keep_list
+So your loop should start with something like:
+
+for book_in_library in self.books:
+
+Now, what should you check inside the loop? You need to compare the book you want to remove with each book in the library. How would you check if two books are the same (hint: compare their title AND author)?
+
+And remember, you want to keep books that are NOT the same as the one you're removing.
+
+
+
+Boots
+class Book:
+def init(self, title, author):
+self.title=title
+self.author=author
+
+class Library:
+def init(self, name):
+self.name=name
+self.books=[]
+
+def add_book(self, book):
+    self.books.append(book)
+    
+
+def remove_book(self, book):
+    keep_list=[]
+    for book in self.books:
+        if book not in keep_list:
+            self.books.remove(book))
+    #After checking all the books, replace the library’s books list with the new list.
+    return keep_list
+            
+    
+            
+        
+
+def search_books(self, search_string):
+    #case insensitive
+    case_string=search_string.lower()
+    keep_list=[]
+    if search_string in Library:
+        keep_list.append
+    return keep_list
+
+Boots
+I see a few issues with your remove_book method:
+
+You have a syntax error - there's an extra closing parenthesis: self.books.remove(book))
+
+More importantly, you're modifying self.books while looping over it, which can cause problems. The instructions specifically warn against this!
+
+Your logic isn't quite right. You need to check if the current book matches the book you want to remove, not if it's already in keep_list.
+
+Let me ask you this: if you want to remove a book with title "1984" and author "George Orwell", and you're looking at a book in your library, what would you check to see if it's the book you want to remove?
+
+Remember the approach from the instructions:
+
+Create a new list for books you want to keep
+Loop through all books
+If a book is NOT the one you want to remove, add it to the new list
+Replace the library's book list with the new list
+How would you compare two books to see if they're the same book?
+
+
+
+Boots
+class Book:
+def init(self, title, author):
+self.title=title
+self.author=author
+
+class Library:
+def init(self, name):
+self.name=name
+self.books=[]
+
+def add_book(self, book):
+    self.books.append(book)
+    
+
+def remove_book(self, book):
+    keep_list=[]
+    for b in self.books:
+        #search for specific book to remove
+        if b  != book:
+            pass
+        else:
+            keep_list.append(book)
+    #After checking all the books, replace the library’s books list with the new list.
+    self.books=keep_list
+            
+    
+            
+        
+
+def search_books(self, search_string):
+    #case insensitive
+    case_string=search_string.lower()
+    keep_list=[]
+    if search_string in Library:
+        keep_list.append
+    return keep_list
+
+Boots
+You're getting closer! I can see you're thinking about the right logic, but there's a key issue with your if/else structure.
+
+Look at this part:
+
+if b != book:
+    pass
+else:
+    keep_list.append(book)
+
+Think about what this is doing:
+
+If b is NOT the book you want to remove, you do nothing (pass)
+If b IS the book you want to remove, you add it to keep_list
+But what should you actually be doing? You want to keep books that are NOT the one you're removing, right?
+
+Also, there's another issue: when you find a book you want to keep, what should you be appending to keep_list - the parameter book (the one you want to remove) or the current book b that you're examining?
+
+Can you fix the logic in your if/else block?
+
+
+
+Boots
+i got turned around writing the else statemetn with the wording
+
+Boots
+Good, you've got the if/else logic right now! But there's still one small issue:
+
+When you find a book you want to keep (when b != book), you're doing:
+
+keep_list.append(book)
+
+But book is the book you want to remove. What should you be appending instead? You want to keep the current book you're looking at, which is stored in variable b.
+
+Also, there's a potential issue with using b != book to compare books. Two different Book objects with the same title and author won't be considered equal with !=. According to the instructions, how should you check if two books are the same? What properties of the books should you compare?
+
+
+
+Boots
+what is the syntax for calling author of a Book(0
+
+Boots
+Great question! To access the author of a Book object, you use dot notation:
+
+book.author
+
+And for the title:
+
+book.title
+
+Now, here's the important part: in your remove_book method, you're using b != book to compare books. But this compares the actual object references, not their contents. Two different Book objects with the same title and author won't be considered equal this way.
+
+According to the instructions, you should compare books by checking if their title AND author match. How would you write a condition that checks if book b has the same title and author as the book you want to remove?
+
+Remember, you want to keep books that do NOT match the book you're removing.
+
+
+
+Boots
+class Book:
+def init(self, title, author):
+self.title=title
+self.author=author
+
+class Library:
+def init(self, name):
+self.name=name
+self.books=[]
+
+def add_book(self, book):
+    self.books.append(book)
+    
+
+def remove_book(self, book):
+    keep_list=[]
+    for b in self.books:
+        #search for specific book to remove
+        if b.author  != book.author and b.title  != book.title  :
+            keep_list.append(b)
+        else:
+            pass
+    #After checking all the books, replace the library’s books list with the new list.
+    self.books=keep_list
+
+def search_books(self, search_string):
+    #case insensitive
+    case_string=search_string.lower()
+    keep_list=[]
+    if search_string in Library:
+        keep_list.append
+    return keep_list
+
+Boots
+Almost there! But there's a logical issue with your condition.
+
+You're using and between the two comparisons:
+
+if b.author != book.author and b.title != book.title:
+
+Think about this: if you want to remove a book called "1984" by "George Orwell", and you're looking at a book called "1984" by "Harper Lee", what happens?
+
+b.author != book.author is True (Harper Lee ≠ George Orwell)
+b.title != book.title is False (1984 = 1984)
+True and False = False
+So this book would NOT be kept, even though it's a different book!
+
+You want to keep a book when EITHER the title is different OR the author is different (or both). What logical operator should you use instead of and?
+
+Also, your remove_book method is looking good now! Once you fix this logic, let's move on to the search_books method. What do you think the first issue is there?
+
+
+
+Boots
+for search_books does the if statement need to be within a b in book in Library?
+
+Boots
+Perfect fix with the or operator! Your remove_book method should work correctly now.
+
+For search_books, you're thinking in the right direction! You do need to loop through something, but let me ask you a few questions:
+
+What should you be looping through? Should it be Library (the class) or something else?
+
+In your current code, you have if search_string in Library: - but what should you actually be checking? You want to see if the search string appears in each book's title or author, right?
+
+Also, there's an issue with this line: keep_list.append - what's missing at the end?
+
+Think about it step by step:
+
+You want to look at each book in the library
+For each book, check if the search string appears in the title OR author
+If it does, add that book to your results list
+What should you be looping through to get each book?
+
+
+
+Boots
+class Book:
+def init(self, title, author):
+self.title=title
+self.author=author
+
+class Library:
+def init(self, name):
+self.name=name
+self.books=[]
+
+def add_book(self, book):
+    self.books.append(book)
+    
+
+def remove_book(self, book):
+    keep_list=[]
+    for b in self.books:
+        #search for specific book to remove
+        if b.author  != book.author or b.title  != book.title  :
+            keep_list.append(b)
+        else:
+            pass
+    #After checking all the books, replace the library’s books list with the new list.
+    self.books=keep_list
+
+def search_books(self, search_string):
+    #case insensitive
+    case_string=search_string.lower()
+    keep_list=[]
+    #Check if string is title or author within the library (case insensitive)
+    if search_string in self.book.author:
+        keep_list.append(search_string)
+    return keep_list
+
+Boots
+You're getting closer, but there are a few issues:
+
+You have self.book.author but self.book doesn't exist. You have self.books (a list of books). How can you check each individual book?
+
+You're appending search_string to the list, but what should you actually be appending? The search results should be a list of books, not search strings.
+
+You're only checking the author, but the instructions say to check if the search string is in the title OR author.
+
+You mentioned case-insensitive searching and even created case_string, but you're not using it in your comparison.
+
+Think about this step by step:
+
+You need to loop through each book in self.books
+For each book, check if the search string (in lowercase) appears in the book's title (in lowercase) OR the book's author (in lowercase)
+If it matches, add that book to your results
+How would you structure a loop to go through each book in self.books?
+
+
+
+Boots
+for b in self.books:
+if search_string == b.author or search_string == b.title:
+keep_list.append(search_string)
+return keep_list
+
+Boots
+Great! You've got the loop structure right now. But there are still a few issues to fix:
+
+You're using == (equals) but the instructions say to check if the search string is "contained in" the title or author. For example, if someone searches for "kill", it should find "To Kill a Mockingbird". What operator should you use instead of ==?
+
+You're appending search_string to the list, but what should you be appending? The method should return a list of books that match, not the search string.
+
+You created case_string = search_string.lower() but you're not using it. Remember, the search should be case-insensitive, so you need to compare lowercase versions.
+
+You also need to convert the book's title and author to lowercase for comparison.
+
+Can you think about how to fix these issues? What should the condition look like to check if the lowercase search string is contained in the lowercase title or author?
+
+
+
+Boots
+give me a reminder what a contained in operator would be in this context
+
+Boots
+The "contained in" operator in Python is in.
+
+For example:
+
+"kill" in "To Kill a Mockingbird" would be True
+"great" in "The Great Gatsby" would be True
+"wizard" in "Harry Potter" would be False
+So instead of using == (which checks for exact equality), you would use in to check if the search string appears anywhere within the title or author.
+
+Now, can you update your condition to:
+
+Use in instead of ==
+Use your case_string variable (the lowercase search string)
+Convert the book's title and author to lowercase for comparison
+What would that condition look like?
+
+
+
+Boots
+    case_string=search_string.lower()
+    keep_list=[]
+    #Check if string is title or author within the library (case insensitive)
+    for b in self.books:
+        if case_string in b.author or case_string in b.title:
+            keep_list.append(b)
+    return keep_list
+
+Boots
+You're very close! You're using case_string (the lowercase search string) and the in operator correctly, but you still need to make the book's title and author lowercase for the comparison.
+
+Right now you have:
+
+if case_string in b.author or case_string in b.title:
+
+But if the book's author is "George Orwell" and someone searches for "george", case_string would be "george" but b.author is still "George Orwell", so the search would fail.
+
+How can you convert b.author and b.title to lowercase in your condition? Remember, you can use the .lower() method on strings.
+
+What would the condition look like if you made both the book's title and author lowercase for comparison?
+
+
+
+Boots
+case_string=search_string.lower() doesnt this part of function convert the lower case???
+
+Boots
+You're absolutely right that case_string = search_string.lower() converts the search string to lowercase!
+
+But here's the issue: you're comparing the lowercase search string (case_string) against the original book title and author, which are still in their original case.
+
+For example:
+
+case_string might be "george" (lowercase)
+b.author might be "George Orwell" (original case with capital G)
+So "george" in "George Orwell" would be False
+But if you made both lowercase:
+
+"george" in "george orwell" would be True
+You need to convert BOTH sides to lowercase for the comparison. You've converted the search string, but you also need to convert b.author and b.title to lowercase when you compare them.
+
+How would you modify your condition to also make b.author and b.title lowercase?
+
+
+
+Boots
+ohhhh i see, missed that part
+
+Boots
+Exactly! You've got it now. So how would you modify your condition to convert both b.author and b.title to lowercase for the comparison?
+
+Remember, you can use .lower() on any string, so you'd apply it to both b.author and b.title in your if statement.
+
+
+
+Boots
+class Book:
+def init(self, title, author):
+self.title=title
+self.author=author
+
+class Library:
+def init(self, name):
+self.name=name
+self.books=[]
+
+def add_book(self, book):
+    self.books.append(book)
+    
+
+def remove_book(self, book):
+    keep_list=[]
+    for b in self.books:
+        #search for specific book to remove
+        if b.author  != book.author or b.title  != book.title  :
+            keep_list.append(b)
+        else:
+            pass
+    #After checking all the books, replace the library’s books list with the new list.
+    self.books=keep_list
+
+def search_books(self, search_string):
+    #case insensitive
+    case_string=search_string.lower()
+    keep_list=[]
+    #Check if string is title or author within the library (case insensitive)
+    for b in self.books:
+        if case_string in b.author.lower() or case_string in b.title.lower():
+            keep_list.append(b)
+    return keep_list
+
+Boots
+Perfect! That looks great now. You've got all three methods working correctly:
+
+✅ Book.__init__ - sets title and author
+✅ Library.__init__ - sets name and creates empty books list
+✅ add_book - appends book to the list
+✅ remove_book - creates new list with books that don't match the one to remove
+✅ search_books - case-insensitive search through titles and authors
+Your code should handle all the requirements now:
+
+Case-insensitive searching with .lower()
+Checking both title and author with the or operator
+Using in to find partial matches
+Returning the actual book objects that match
+Try running your code to see if it passes the tests! If there are any issues, let me know what errors you're getting.
+
+
+
+Boots
+You did good this time boots
+
+Boots
+Thank you, young apprentice! I'm glad I could help guide you through the logic step by step. You did excellent work figuring out those tricky parts - especially catching the case-sensitivity issue and working through the boolean logic for the remove_book method.
+
+Building a library system with classes is no small feat! You've got a solid grasp on:
+
+Class initialization and instance variables
+List manipulation with append()
+String methods like .lower()
+Boolean operators (and vs or)
+The in operator for substring searching
+Is there anything about classes, methods, or this library system that you'd like me to explain further, or would you like me to quiz you on any of these concepts?
+
+
+
+Boots
+Is it possible to generalise the search_string case to search all/any of the instance attributes at same time?
+
+Boots
+Excellent question! Yes, absolutely. There are several ways to make the search more generalized to work with any attributes.
+
+Here are a few approaches:
+
+Option 1: Using getattr() with a list of attributes
+def search_books(self, search_string):
+    case_string = search_string.lower()
+    results = []
+    attributes_to_search = ['title', 'author']  # easily extensible
+    
+    for book in self.books:
+        for attr in attributes_to_search:
+            attr_value = getattr(book, attr, "")  # get attribute value, default to ""
+            if case_string in attr_value.lower():
+                results.append(book)
+                break  # found a match, no need to check other attributes for this book
+    return results
+
+Option 2: Using vars() to get all attributes
+def search_books(self, search_string):
+    case_string = search_string.lower()
+    results = []
+    
+    for book in self.books:
+        book_attributes = vars(book)  # returns dict of all instance attributes
+        for attr_value in book_attributes.values():
+            if isinstance(attr_value, str) and case_string in attr_value.lower():
+                results.append(book)
+                break
+    return results
+
+Option 3: Adding a search method to the Book class
+class Book:
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+    
+    def matches_search(self, search_string):
+        search_lower = search_string.lower()
+        return (search_lower in self.title.lower() or 
+                search_lower in self.author.lower())
+
+class Library:
+    def search_books(self, search_string):
+        return [book for book in self.books if book.matches_search(search_string)]
+
+The third option is probably the cleanest - it keeps the search logic with the Book class where it belongs, and if you later add more attributes (like genre, publication_year, etc.), you just update the matches_search method.
+
+Which approach appeals to you most?
+
+
+
+Boots
+A few good new functions here. I think Option 2, because it specifies STR to search against
+
+Boots
+Great choice! Option 2 is indeed very robust because of that isinstance(attr_value, str) check. This is really important because:
+
+Type Safety: If you later add non-string attributes to Book (like publication_year as an integer, or is_available as a boolean), the search won't crash trying to call .lower() on them.
+
+Future-Proof: You can add any number of string attributes to the Book class without modifying the search logic at all.
+
+Automatic Discovery: It finds all string attributes dynamically, so you don't need to maintain a separate list of searchable fields.
+
+Here's a slightly enhanced version that might interest you:
+
+def search_books(self, search_string):
+    case_string = search_string.lower()
+    results = []
+    
+    for book in self.books:
+        book_attributes = vars(book)
+        for attr_name, attr_value in book_attributes.items():
+            if isinstance(attr_value, str) and case_string in attr_value.lower():
+                results.append(book)
+                break  # avoid duplicates if multiple attributes match
+    return results
+
+The .items() gives you both the attribute name and value, which could be useful for debugging or if you wanted to show which field matched the search.
+
+This kind of reflective programming (examining objects at runtime) is a powerful Python feature. Have you encountered vars() or getattr() before in other contexts?
+
+
+
+Boots
+Yes getattr() but didnt comprehend the type search aspect
+
+Boots
+Ah yes, the type checking aspect is really crucial! Let me break down why isinstance(attr_value, str) is so important:
+
+Without type checking - what could go wrong:
+class Book:
+    def __init__(self, title, author, year, pages):
+        self.title = title           # string
+        self.author = author         # string  
+        self.year = year             # integer
+        self.pages = pages           # integer
+
+# Without isinstance check:
+def search_books(self, search_string):
+    for book in self.books:
+        for attr_value in vars(book).values():
+            # This would crash! Can't call .lower() on integers
+            if search_string.lower() in attr_value.lower():  # ERROR!
+
+With type checking - safe and selective:
+def search_books(self, search_string):
+    case_string = search_string.lower()
+    for book in self.books:
+        for attr_value in vars(book).values():
+            # Only try string operations on actual strings
+            if isinstance(attr_value, str) and case_string in attr_value.lower():
+                results.append(book)
+                break
+
+The isinstance(obj, type) function is like asking "Is this thing actually a string?" before trying to do string operations on it.
+
+You could also extend this concept:
+
